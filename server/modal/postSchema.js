@@ -6,5 +6,5 @@ let schema=mongoose.Schema({
     selectedfile:String,
     likecount:Number
 })
-let postSchema=mongoose.modal('Post',schema)
-export default postSchema
+let postSchema=mongoose.model('Post',schema)
+module.exports=postSchema
