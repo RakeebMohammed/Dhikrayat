@@ -6,7 +6,7 @@ let schema=mongoose.Schema({
     creator:String,
     tags:[String],
     selectedfile:String,
-    likecount:Number,
+    likeCount:Number,
     createdAt:{
         type:Date,
         default:new Date
