@@ -43,11 +43,16 @@ exports.deletePost = async (req, res) => {
 exports.likePost = async (req, res) => {
   const { id } = req.params;
   console.log(id);
+  if(!req.userId) return res.json({message:"Unauthenticated access"})
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("no post with that id");
     const post=await postSchema.findById({_id:id})
+
+    const index=post.likes.filter(like=>like===req.userId)
+    !index.length>0?
+    post.likes.push(req.userId):post.likes.filter(like=>like!==req.userId)
     
-    let updated = await postSchema.findByIdAndUpdate({ _id: id }, {likeCount:post.likeCount?+post.likeCount+1:1}, {
+    let updated = await postSchema.findByIdAndUpdate({ _id: id }, post, {
       new: true,
     });
     res.status(200).json(updated);
