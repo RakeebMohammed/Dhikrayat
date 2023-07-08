@@ -1,11 +1,14 @@
 let express=require('express')
 let router=express.Router()
-let {getPosts,createPost,getPost,updatePost,deletePost, likePost}=require('../controller/postController')
+let {getPosts,createPost,getPost,updatePost,deletePost, likePost,searchPosts}=require('../controller/postController')
+
+const validateToken=require('../middleware/validateToken')
 router.get('/',getPosts)
+router.get('/search',searchPosts)
 router.post('/createPost',createPost)
-router.patch('/:id',updatePost)
+router.patch('/:id',validateToken,updatePost)
 router.delete('/:id',deletePost)
-router.put('/:id',likePost)
-router.get('/getPost',getPost)
+router.put('/:id',validateToken,likePost)
+router.get('/getPost',validateToken,getPost)
 
 module.exports=router

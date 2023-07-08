@@ -2,9 +2,15 @@ const { default: mongoose } = require("mongoose");
 let postSchema = require("../modal/postSchema");
 
 exports.getPosts = async (req, res) => {
-  let result = await postSchema.find();
-  result.reverse()
-  res.status(201).json(result);
+ 
+  let {page}=req.query
+  page=parseInt(page)
+  const limit =2
+  const currentIndex=(page-1)*limit
+const total=await postSchema.count()
+  let posts = await postSchema.find().sort({_id:-1}).limit(limit).skip(currentIndex);
+ console.log(page);
+  res.status(201).json({data:posts,currentPage:page,totalPage:Math.ceil(total/limit)});
 };
 exports.createPost = async (req, res) => {
   console.log(req.body);
@@ -58,3 +64,12 @@ exports.likePost = async (req, res) => {
     res.status(200).json(updated);
     console.log(updated);
 };
+exports.searchPosts=async(req,res)=>{
+ const {query,tags}=req.query
+console.log(req.query);
+const title=new RegExp(query,'i')
+const posts=await postSchema.find({$or:[{title},{tags:{$in:tags.split(',')}}]})
+console.log(posts);
+res.status(200).json(posts)
+}
+
