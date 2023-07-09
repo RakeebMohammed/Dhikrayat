@@ -12,9 +12,9 @@ const validateToken = async (req, res, next) => {
           else {
             console.log(valid.EmailExists);
             req.userId = valid.EmailExists._id;
-           
-            next();
 
+            next();
+console.log('oasfsdgsdogh');
             console.log("success");
           }
         });
