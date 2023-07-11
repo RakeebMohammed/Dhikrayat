@@ -9,6 +9,6 @@ router.post('/createPost',createPost)
 router.patch('/:id',validateToken,updatePost)
 router.delete('/:id',deletePost)
 router.put('/:id',validateToken,likePost)
-router.get('/getPost',validateToken,getPost)
+router.get('/:id',getPost)
 
 module.exports=router

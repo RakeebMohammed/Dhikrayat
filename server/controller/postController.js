@@ -20,10 +20,10 @@ exports.createPost = async (req, res) => {
   res.status(201).json(newPost);
 };
 exports.getPost = async (req, res) => {
-  console.log(req.body);
-  const { id } = req.body;
-  let result = await postSchema.find({ _id: id });
-  console.log(result);
+ console.log(req.params);
+  const { id } = req.params;
+  let post = await postSchema.find({ _id: id });
+  res.status(200).json(post)
 };
 exports.updatePost = async (req, res) => {
   const { id } = req.params;
