@@ -8,7 +8,16 @@ let schema=mongoose.Schema({
     likes:{
         type:[String],
         default:[]
-    }
+    },
+    creator:String,
+    comments:{
+        type:[String],
+        default:[]
+    },
+    createdAt:{
+        type:Date,
+        default:new Date()
+    },
    
 })
 let postSchema=mongoose.model('Post',schema)

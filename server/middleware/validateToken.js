@@ -5,17 +5,18 @@ const validateToken = async (req, res, next) => {
     let header = req.headers["authorization"];
     if (header && header.startsWith("Bearer")) {
       token = header.split(" ")[1].toString();
+      console.log(token);
       if (token) {
         //verifying token with the secret key
         jwt.verify(token, process.env.SECRET, (err, valid) => {
+         console.log(err+'sfgsdf');
           if (err) res.status(404).json("Authorisation failed");
           else {
-            console.log(valid.EmailExists);
-            req.userId = valid.EmailExists._id;
+      
+            req.userId = valid.id;
 
             next();
-console.log('oasfsdgsdogh');
-            console.log("success");
+
           }
         });
       }

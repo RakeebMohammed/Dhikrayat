@@ -4,11 +4,12 @@ let {getPosts,createPost,getPost,updatePost,deletePost, likePost,searchPosts}=re
 
 const validateToken=require('../middleware/validateToken')
 router.get('/',getPosts)
-router.get('/search',searchPosts)
-router.post('/createPost',createPost)
-router.patch('/:id',validateToken,updatePost)
-router.delete('/:id',deletePost)
-router.put('/:id',validateToken,likePost)
 router.get('/:id',getPost)
+router.get('/search',searchPosts)
+router.post('/createPost',validateToken,createPost)
+router.patch('/:id',validateToken,updatePost)
+router.delete('/:id',validateToken,deletePost)
+router.put('/:id',validateToken,likePost)
+
 
 module.exports=router

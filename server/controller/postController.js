@@ -22,9 +22,10 @@ exports.getPosts = async (req, res) => {
     });
 };
 exports.createPost = async (req, res) => {
-  console.log(req.body);
-  let newPost = new postSchema(req.body);
-  newPost = await newPost.save();
+  console.log(req.userId);
+  const post=req.body
+  let newPost = await postSchema.create({...post,creator:req.userId,createdAt:new Date().toISOString()});
+  
   console.log(newPost);
   res.status(201).json(newPost);
 };
@@ -32,6 +33,7 @@ exports.getPost = async (req, res) => {
   console.log(req.params);
   const { id } = req.params;
   let post = await postSchema.find({ _id: id });
+
   res.status(200).json(post);
 };
 exports.updatePost = async (req, res) => {
