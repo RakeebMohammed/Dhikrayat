@@ -4,7 +4,7 @@ let postSchema = require("../modal/postSchema");
 exports.getPosts = async (req, res) => {
   let { page } = req.query;
   page = parseInt(page);
-  const limit = 2;
+  const limit = 12;
   const currentIndex = (page - 1) * limit;
   const total = await postSchema.count();
   let posts = await postSchema
@@ -43,7 +43,7 @@ exports.updatePost = async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("no post with that id");
-  let updated = await postSchema.findByIdAndUpdate({ _id: id }, req.body, {
+  let updated = await postSchema.findByIdAndUpdate({ _id: id }, {...req.body,createdAt:new Date().toISOString()}, {
     new: true,
   });
   res.status(200).json(updated);

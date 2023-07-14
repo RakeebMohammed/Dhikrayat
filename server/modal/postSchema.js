@@ -5,6 +5,7 @@ let schema=mongoose.Schema({
     title:String,
     tags:[String],
     selectedfile:String,
+    name:String,
     likes:{
         type:[String],
         default:[]
