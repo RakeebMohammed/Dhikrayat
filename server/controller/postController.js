@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+const {mongoose } = require("mongoose");
 let postSchema = require("../modal/postSchema");
 
 exports.getPosts = async (req, res) => {
@@ -32,8 +32,8 @@ exports.createPost = async (req, res) => {
 exports.getPost = async (req, res) => {
   console.log(req.params);
   const { id } = req.params;
-  let post = await postSchema.find({ _id: id });
-
+  let post = await postSchema.findById({ _id: id });
+ 
   res.status(200).json(post);
 };
 exports.updatePost = async (req, res) => {
@@ -65,23 +65,23 @@ exports.likePost = async (req, res) => {
   const post = await postSchema.findById({ _id: id });
 
   const index = post.likes.filter((like) => like === req.userId);
-  !index.length > 0
-    ? post.likes.push(req.userId)
-    : post.likes.filter((like) => like !== req.userId);
-
+  console.log(index);
+  index.length === 0
+    ?  post.likes.push(req.userId)
+    :post.likes.filter(like =>   like !== req.userId)
+console.log(post)
   let updated = await postSchema.findByIdAndUpdate({ _id: id }, post, {
     new: true,
   });
   res.status(200).json(updated);
-  console.log(updated);
+ 
 };
 exports.searchPosts = async (req, res) => {
-  const { query, tags } = req.query;
+/*   const { query, tags } = req.query;
   console.log(req.query);
   const title = new RegExp(query, "i");
   const posts = await postSchema.find({
     $or: [{ title }, { tags: { $in: tags.split(",") } }],
   });
-  console.log(posts);
-  res.status(200).json(posts);
+   res.status(200).json(posts);*/
 };

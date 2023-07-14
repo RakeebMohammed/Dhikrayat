@@ -14,7 +14,7 @@ app.use('/user',userRoutes)
 let url='mongodb://localhost:27017'
 let port =process.env.PORT || 3001
 mongoose.connect(url).then(()=>{
-    app.listen(process.env.PORT,()=>console.log(`App is listening to port ${process.env.PORT}`))
+    app.listen(port,()=>console.log(`App is listening to port ${port}`))
 }).catch(err=>{
     console.log(err);
 })
