@@ -49,6 +49,7 @@ exports.updatePost = async (req, res) => {
   res.status(200).json(updated);
 };
 exports.deletePost = async (req, res) => {
+  
   const { id } = req.params;
   console.log(id);
   if (!mongoose.Types.ObjectId.isValid(id))
@@ -77,11 +78,13 @@ console.log(post)
  
 };
 exports.searchPosts = async (req, res) => {
-/*   const { query, tags } = req.query;
-  console.log(req.query);
+    const { query, tags } = req.query;
+   console.log(req.query);
+  
   const title = new RegExp(query, "i");
   const posts = await postSchema.find({
     $or: [{ title }, { tags: { $in: tags.split(",") } }],
   });
-   res.status(200).json(posts);*/
+  console.log(posts);
+   res.status(200).json({data:posts});
 };
