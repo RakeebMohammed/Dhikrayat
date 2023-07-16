@@ -33,7 +33,7 @@ exports.getPost = async (req, res) => {
   console.log(req.params);
   const { id } = req.params;
   let post = await postSchema.findById({ _id: id });
- 
+ console.log(post);
   res.status(200).json(post);
 };
 exports.updatePost = async (req, res) => {
@@ -88,3 +88,12 @@ exports.searchPosts = async (req, res) => {
   console.log(posts);
    res.status(200).json({data:posts});
 };
+exports.commentPost=async(req,res)=>{
+const {comment}=req.body
+ const {id}=req.params;
+ let post = await postSchema.findById({ _id: id });
+ post.comments.push(comment)
+ console.log(post);
+ let update=await postSchema.findByIdAndUpdate({_id:id},post,{new:true})
+ res.status(200).send(update)
+}
