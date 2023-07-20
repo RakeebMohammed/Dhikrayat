@@ -1,0 +1,53 @@
+
+import { CircularProgress, Divider, Paper, Typography, Grid } from "@mui/material";
+import moment from "moment";
+import React, { useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  //useNavigate,
+  useParams,
+} from "react-router-dom";
+import * as api from "../../api";
+
+import { previewPost } from "../../redux/redux";
+import CommentSection from "./CommentSection";
+const PostDetails = () => {
+  const dispatch=useDispatch()
+  const post=useSelector(state=>state.post)
+ 
+  const {id} = useParams();
+  //const navigate=useNavigate()
+  useEffect(() => {
+   preview()
+  },[id])
+  const preview=async()=>{
+    let { data } = await api.previewPost(id);
+   
+    dispatch(previewPost(data))
+  }
+  return (
+    <Paper  elevation={8} style={{margin:'25px 0',padding:'25px 25px'}} >
+     <Grid container spacing={3}>
+      <Grid item  xs={12} md={6} sx={{paddingLeft:'25px'}} justifyContent='space-between' alignItems='center'> <Typography variant="h2" color=""  >{post?.title}</Typography>
+      <Typography variant="body2" color="seagreen" sx={{py:2}} >{post?.tags?.map(tag=>`#${tag}`)}</Typography>
+      <Typography variant="body1" color=""  sx={{py:1}} >{post?.message
+}</Typography>
+  <Typography variant="body1" color=""  sx={{py:1}} >Created by :{post?.name}</Typography>
+      <Typography variant="body2" color=""  >{moment(post?.createdAt).fromNow()}</Typography>
+    <Divider sx={{margin:'10px'}}/>
+    <CommentSection post={post}/>
+     
+
+        
+      </Grid>    <Grid  item  xs={12}  md={6}>
+      <img src={post?.selectedfile} style={{height:'500px',objectFit:'cover',borderRadius:'25px'}} alt="No logo" />
+   
+        </Grid>  
+</Grid>
+
+    </Paper>
+  );
+};
+
+export default PostDetails;
