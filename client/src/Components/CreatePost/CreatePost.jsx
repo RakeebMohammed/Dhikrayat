@@ -64,9 +64,9 @@ function CreatePost({ Id, setId }) {
   };
   return (
     <>
-      {" "}
+    
       {user?.result?.name && (
-        <Paper sx={{ padding: "10px" }} elevation={6}>
+        <Paper sx={{ padding: "10px" ,mb:2}} elevation={6}>
           <form autoComplete="off" noValidate>
             <Typography sx={{ py: "5px" }} align="center">
               {Id ? "Editing" : "Creating"} a Memory

@@ -14,6 +14,7 @@ const Paginate = ({ page }) => {
       count={totalPage}
       page={Number(page)}
       color="success"
+      
       renderItem={(item) => (
         <PaginationItem
           {...item}

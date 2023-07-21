@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Button, Toolbar, Avatar, AppBar } from "@mui/material";
+import { Typography, Button, Toolbar, Avatar, AppBar, Box } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { red, teal } from "@mui/material/colors";
 const Navbar = () => {
@@ -28,22 +28,21 @@ const Navbar = () => {
           </Typography>
         </Link>
         {User ? (
-          <div 
-            style={{
-              width: "500px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
+          <Box 
+          sx={{ width: "480px",
+          display: "flex",
+          justifyContent:{md:"space-between",xs:"flex-end",sm:'flex-end'},
+          alignItems: "center"}}
+           
           >
             
-            <Avatar src={User?.imageUrl} alt="no image"  sx={{display:{lg:'none'}}}>
+            <Avatar src={User?.imageUrl} alt="no image"  sx={{display:{xs:'none',sm:'none',md:'flex'}}}>
               {User?.name?.charAt(0)}
             </Avatar>
-            <Typography variant="h5" color="initial">
+            <Typography variant="h5" color="initial" sx={{display:{xs:'none',sm:'none',md:'flex'}}}>
               {User.name}
             </Typography>
-            <Button
+            <Button 
               style={{ backgroundColor: red[500] }}
               variant="contained"
               size="small"
@@ -53,7 +52,7 @@ const Navbar = () => {
                 Logout
               </Typography>
             </Button>
-          </div>
+          </Box>
         ) : (
         
           <Button

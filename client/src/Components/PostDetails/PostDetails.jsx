@@ -1,5 +1,5 @@
 
-import { CircularProgress, Divider, Paper, Typography, Grid } from "@mui/material";
+import { CircularProgress, Divider, Paper, Typography, Grid, Box} from "@mui/material";
 import moment from "moment";
 import React, { useEffect } from "react";
 
@@ -41,8 +41,9 @@ const PostDetails = () => {
 
         
       </Grid>    <Grid  item  xs={12}  md={6}>
-      <img src={post?.selectedfile} style={{height:'500px',objectFit:'cover',borderRadius:'25px'}} alt="No logo" />
-   
+      <Box component="img"  src={post?.selectedfile} sx={{height:'auto',width:{sm:'300px',xs:'300px',md:'400px',lg:'500px'},objectFit:'fill',borderRadius:'25px'}} >
+      {/* <img src={post?.selectedfile} style={{height:'500px',objectFit:'fill',borderRadius:'25px'}} alt="No logo" /> */}
+  </Box>
         </Grid>  
 </Grid>
 

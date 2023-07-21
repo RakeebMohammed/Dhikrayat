@@ -53,13 +53,19 @@ const Home = () => {
       <Grid
         container
         justifyContent="space-between"
-        sx={{ pr: 2, pl: 2 }}
+        sx={{ pr: 2, pl: 2 ,display:'flex',flexDirection:{xs:'column-reverse',sm:'row-reverse',md:'row'}}}
         alignItems="stretch"
+
       >
-        <Grid item xs={12} sm={8} md={9} sx={{ px: "15px", mb: "15px" }}>
+        <Grid item xs={12} sm={8} md={9} sx={{ px: "15px", mb: "15px" }} >
           <Post setId={setId} />
+          {!searchQuery && !Tags.length && (
+            <Paper sx={{ my: "15px" ,justifyContent:'center',display:'flex'}} >
+              <Paginate page={page} />
+            </Paper>
+          )}
         </Grid>
-        <Grid item xs={12} sm={4} md={3}>
+        <Grid item xs={12} sm={4} md={3 }>
           <Paper sx={{ padding: "15px", mb: 1 }}>
             <TextField
               sx={{ my: "4px" }}
@@ -91,13 +97,11 @@ const Home = () => {
             </Button>
           </Paper>
           <CreatePost Id={Id} setId={setId} />
-          {!searchQuery && !Tags.length && (
-            <Paper sx={{ my: "5px" }}>
-              <Paginate page={page} />
-            </Paper>
-          )}
+         
         </Grid>
+       
       </Grid>
+    
     </Grow>
   );
 };
