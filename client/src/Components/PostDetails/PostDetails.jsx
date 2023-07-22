@@ -17,7 +17,6 @@ const PostDetails = () => {
   const post=useSelector(state=>state.post)
  
   const {id} = useParams();
-  //const navigate=useNavigate()
   useEffect(() => {
    preview()
   },[id])

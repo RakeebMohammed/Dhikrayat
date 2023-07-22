@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import { Button, Container, Grid, Paper } from "@mui/material";
+import { Button, Container, Grid, InputAdornment, Paper } from "@mui/material";
 import * as api from "../../api/index";
 import { useNavigate } from "react-router-dom";
-import { lightBlue,red } from "material-ui-colors";
-
+import { lightBlue,red,blueGrey } from "material-ui-colors";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 function Auth() {
   const navigate = useNavigate();
   const [Error,setError]=useState(" ")
-  
+  const [ShowPassword, setShowPassword] = useState(false)
   const [FormData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -53,7 +54,7 @@ function Auth() {
         <Typography
           variant="h3"
           textAlign="center"
-          sx={{ color: lightBlue[300] }}
+          sx={{ color: blueGrey[300] }}
         >
           {isSignup ? "SignUp" : "SignIn"}
         </Typography>
@@ -70,6 +71,7 @@ function Auth() {
                   name="firstname"
                   onChange={handleChange}
                   fullWidth
+                 
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -93,6 +95,7 @@ function Auth() {
             name="email"
             onChange={handleChange}
             fullWidth
+           
           />{" "}
           <TextField
            value={FormData.password}
@@ -102,7 +105,14 @@ function Auth() {
             name="password"
             onChange={handleChange}
             fullWidth
-            type="password"
+            type={ShowPassword?"text":"password"}
+           
+            InputProps={{
+            
+              endAdornment:(<InputAdornment  onClick={()=>setShowPassword(prev=>!prev)} position="end" >
+                {ShowPassword?<VisibilityOffIcon/>:<VisibilityIcon/>}
+              </InputAdornment>)
+          }}
           />
           {isSignup && (
             <>
@@ -119,7 +129,7 @@ function Auth() {
             </>
           )}
           <Button
-            sx={{ my: "4px" }}
+            sx={{ my: "4px"}}
             variant="contained"
             onClick={handleSubmit}
             fullWidth

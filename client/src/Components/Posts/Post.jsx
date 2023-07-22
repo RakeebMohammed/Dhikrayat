@@ -16,7 +16,7 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { red } from "material-ui-colors";
+import { red ,blueGrey} from "material-ui-colors";
 import * as api from "../../api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -40,7 +40,7 @@ function Post({ setId }) {
   const previewDetails = async (id) => {
     navigate(`/posts/${id}`);
   };
-  if (isLoading) return <CircularProgress />;
+  if (isLoading) return <CircularProgress  sx={{height:'800px',width:"800px"}} />;
 
   return (
     <Grid container spacing={2}>
@@ -49,6 +49,7 @@ function Post({ setId }) {
           <Card
             raised
             sx={{
+            
               cursor: "pointer",
               position: "relative",
               borderRadius: "15px",
@@ -112,7 +113,7 @@ function Post({ setId }) {
               <Typography variant="h4" color="initial">
                 {post.title}
               </Typography>
-              <Typography variant="body2" color="GrayText">
+              <Typography variant="body2" color="GrayText" sx={{height:'60px',overflow:'hidden'}}>
                 {post.message}
               </Typography>
             </CardContent>

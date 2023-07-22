@@ -65,7 +65,7 @@ const Navbar = () => {
               color="white"
               component={Link}
               to={"/auth"}
-              style={{textDecoration:'none'}}
+              sx={{textDecoration:'none'}}
             >
               SignIn
             </Typography>
