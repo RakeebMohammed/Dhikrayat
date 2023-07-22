@@ -15,7 +15,12 @@ let post = createSlice({
         totalPage: action.payload.totalPage,
         isLoading: false,
       };
+    },searchPosts(state,action){
+      return{
+        ...state,posts:action.payload.data
+      }
     },
+
     previewPost(state, action) {
     
       return { ...state, post: action.payload };
@@ -33,7 +38,7 @@ let post = createSlice({
       const posts = state.posts.filter((post) => post._id !== action.payload);
       return { ...state, posts: posts };
     },
-     commentPost(state, action) {
+     commentPosts(state, action) {
       const post = state.posts.map((post) =>
         post._id === action.payload._id 
       );
@@ -41,6 +46,6 @@ let post = createSlice({
     }
   },
 });
-export const { getPosts, createPost, updatePost, deletePost, previewPost ,commentPost} =
+export const { getPosts,searchPosts, createPost, updatePost, deletePost, previewPost ,commentPosts} =
   post.actions;
 export default post.reducer;

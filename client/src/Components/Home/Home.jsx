@@ -13,7 +13,7 @@ import {
 import Post from "../Posts/Post";
 import { MuiChipsInput } from "mui-chips-input";
 import CreatePost from "../CreatePost/CreatePost";
-import { getPosts } from "../../redux/redux";
+import { getPosts, searchPosts } from "../../redux/redux";
 import Paginate from "../Pagination/Paginate";
 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ const Home = () => {
   const page = query.get("page") || 1;
 
   const searchQuery = query.get("searchQuery");
-
+  const tags= query.get('Tags')
   const [Id, setId] = useState(null);
   const navigate = useNavigate();
   const [Search, setSearch] = useState("");
@@ -34,7 +34,14 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if(searchQuery || tags){
+      console.log(Search,Tags);
+handleSubmit(searchQuery,tags)
+
+    }
+   else{
     getAllPost();
+   }
   }, [Id, page]);
   const getAllPost = async () => {
     let { data } = await api.getPost(page);
@@ -44,7 +51,7 @@ const Home = () => {
   const handleSubmit = async () => {
     let { data } = await api.searchPost(Search, Tags.join(","));
     console.log(data);
-    dispatch(getPosts(data));
+    dispatch(searchPosts(data));
     navigate(`/posts/search?searchQuery=${Search}&Tags=${Tags.join(",")}`);
   };
 

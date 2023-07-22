@@ -3,10 +3,10 @@ import { Typography, TextField, Button, Divider, Grid } from "@mui/material";
 import { useState } from "react";
 import * as api from "../../api";
 import { useDispatch } from "react-redux";
+import { commentPosts } from "../../redux/redux";
 
 const CommentSection = ({ post }) => {
   const dispatch=useDispatch()
-  console.log(post);
   const [Comment, setComment] = useState("");
   const [Comments, setComments] = useState(post?.comments);
   console.log(Comments);
@@ -15,8 +15,10 @@ console.log(post?.comments);
   const commentPost = async () => {
     const final = `${user?.result?.name} : ${Comment}`;
     let { data } = await api.commentPost(final, post._id);
-dispatch(commentPost(data)
-)
+ dispatch(commentPosts(data))
+ 
+ setComment((''))
+
   };
   return (
     <Grid container>
@@ -25,11 +27,11 @@ dispatch(commentPost(data)
         <Typography variant="h6" gutterBottom color="initial">
           Comments
         </Typography>
-        {/* {post?.comments?.map((c, i) => (
+        {post?.comments?.map((c, i) => (
           <Typography variant="h6" key={i} color="initial">
             <strong>{c.split(":")[0]}</strong>:{c.split(":")[1]}
           </Typography>
-        ))} */}
+        ))}
       </Grid>
 
       {user?.result?.name && (

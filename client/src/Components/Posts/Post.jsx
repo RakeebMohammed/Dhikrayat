@@ -41,9 +41,7 @@ function Post({ setId }) {
     navigate(`/posts/${id}`);
   };
   if (isLoading) return <CircularProgress />;
-const Like=()=>{
 
-}
   return (
     <Grid container spacing={2}>
       {posts.map((post) => (

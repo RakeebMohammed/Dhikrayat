@@ -41,9 +41,7 @@ const PostDetails = () => {
 
         
       </Grid>    <Grid  item  xs={12}  md={6}>
-      <Box component="img"  src={post?.selectedfile} sx={{height:'auto',width:{sm:'300px',xs:'300px',md:'400px',lg:'500px'},objectFit:'fill',borderRadius:'25px'}} >
-      {/* <img src={post?.selectedfile} style={{height:'500px',objectFit:'fill',borderRadius:'25px'}} alt="No logo" /> */}
-  </Box>
+      <Box component="img"  src={post?.selectedfile} sx={{width:{sm:'300px',xs:'300px',md:'400px',lg:'500px'},objectFit:'fill',borderRadius:'25px'}}/>
         </Grid>  
 </Grid>
 

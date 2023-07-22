@@ -6,7 +6,7 @@ exports.SignIn = async (req, res) => {
   const { password, email } = req.body;
   const emailExist = await userSchema.findOne({ email });
 
-  if (!emailExist) return res.status(404).json({ message: "No user found" });
+  if (!emailExist) return res.status(201).json({ message: "No user found" });
   const passwordCheck = await bcrypt.compare(password, emailExist.password);
   if (!passwordCheck)
     return res.status(404).json({ message: "Invalid password" });
@@ -23,9 +23,9 @@ exports.SignUp = async (req, res) => {
   const { firstname, lastname, password, confirmpassword, email } = req.body;
   const emailExist = await userSchema.findOne({ email });
   if (emailExist)
-    return res.status(404).json({ message: "User already exist" });
+    return res.status(201).json({ message: "User already exist" });
   if (password !== confirmpassword)
-    return res.status(404).json({ message: "Password mismatch" });
+    return res.status(201).json({ message: "Password mismatch" });
   const hashedPassword = await bcrypt.hash(password, 12);
   const result = await userSchema.create({
     email,
