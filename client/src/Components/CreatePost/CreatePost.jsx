@@ -126,7 +126,7 @@ function CreatePost({ Id, setId }) {
             type="submit"
             onClick={handleSubmit}
           >
-            Create
+          {Id?'Edit':'Create'}  
           </Button>
           <Button
             sx={{

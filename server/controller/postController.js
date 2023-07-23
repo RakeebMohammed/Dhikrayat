@@ -87,7 +87,7 @@ exports.searchPosts = async (req, res) => {
     $or: [{ title }, { tags: { $in: tags.split(",") } }],
   });
   console.log(posts);
-  res.status(200).json({ data: posts });
+  res.status(200).json(posts);
 };
 exports.commentPost = async (req, res) => {
   const { comment } = req.body;

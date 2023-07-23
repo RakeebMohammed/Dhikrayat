@@ -1,5 +1,5 @@
 
-import { CircularProgress, Divider, Paper, Typography, Grid, Box} from "@mui/material";
+import { CircularProgress, Divider, Paper, Typography, Grid, Box,Stack} from "@mui/material";
 import moment from "moment";
 import React, { useEffect } from "react";
 
@@ -14,7 +14,7 @@ import { previewPost } from "../../redux/redux";
 import CommentSection from "./CommentSection";
 const PostDetails = () => {
   const dispatch=useDispatch()
-  const post=useSelector(state=>state.post)
+  const {post,isLoading}=useSelector(state=>state)
  
   const {id} = useParams();
   useEffect(() => {
@@ -25,6 +25,8 @@ const PostDetails = () => {
    
     dispatch(previewPost(data))
   }
+  if (isLoading) return<Stack sx={{alignItems:'center'}}><CircularProgress  size="5rem"/></Stack> 
+
   return (
     <Paper  elevation={8} style={{margin:'25px 0',padding:'25px 25px'}} >
      <Grid container spacing={3}>
@@ -34,13 +36,13 @@ const PostDetails = () => {
 }</Typography>
   <Typography variant="body1" color=""  sx={{py:1}} >Created by :{post?.name}</Typography>
       <Typography variant="body2" color=""  >{moment(post?.createdAt).fromNow()}</Typography>
-    <Divider sx={{margin:'10px'}}/>
+    <Divider sx={{m:4}}/>
     <CommentSection post={post}/>
      
 
         
-      </Grid>    <Grid  item  xs={12}  md={6}>
-      <Box component="img"  src={post?.selectedfile} sx={{width:{sm:'300px',xs:'300px',md:'400px',lg:'500px'},objectFit:'fill',borderRadius:'25px'}}/>
+      </Grid>    <Grid  item  xs={12}  md={6} textAlign='center'>
+      <Box  component="img"  src={post?.selectedfile} sx={{width:{sm:'300px',xs:'300px',md:'400px',lg:'500px'},objectFit:'fill',borderRadius:'25px'}}/>
         </Grid>  
 </Grid>
 

@@ -25,6 +25,9 @@ function Auth() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(  FormData.email=== ""||
+    FormData.password=== "")
+    return setError('Required all fields')
     if (isSignup) {
       const { data } = await api.signUp(FormData);
       if(data.message) setError(data.message)
@@ -128,6 +131,8 @@ function Auth() {
               />
             </>
           )}
+           {Error && <Typography  variant="body1" sx={{color:red[500]}}>{Error}</Typography>}
+      
           <Button
             sx={{ my: "4px"}}
             variant="contained"
@@ -136,8 +141,7 @@ function Auth() {
           >
             {isSignup ? `SignUp` : "SignIn"}
           </Button>
-      {Error && <Typography  variant="body1" sx={{color:red[500]}}>{Error}</Typography>}
-          <Button variant="body" color="initial" onClick={switchMode}>
+         <Button variant="body" color="initial" onClick={switchMode}>
             {isSignup
               ? "Already have an account ? SignIn"
               : "Dont have an Account ? SignUp"}

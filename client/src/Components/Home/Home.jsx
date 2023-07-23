@@ -34,15 +34,11 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(searchQuery || tags){
-      console.log(Search,Tags);
-handleSubmit(searchQuery,tags)
-
-    }
-   else{
+   if(!searchQuery || !tags){
+    console.log(tags);
     getAllPost();
-   }
-  }, [Id, page]);
+  console.log('mount');}
+  }, [page]);
   const getAllPost = async () => {
     let { data } = await api.getPost(page);
 

@@ -10,6 +10,7 @@ import {
   CardActions,
   Typography,
   CircularProgress,
+  Stack,
 } from "@mui/material";
 import { deletePost, updatePost } from "../../redux/redux";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
@@ -21,7 +22,7 @@ import * as api from "../../api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 function Post({ setId }) {
-  const { posts, isLoading } = useSelector((state) => state);
+  const { posts ,isLoading} = useSelector((state) => state);
   const [Likes, setLikes] = useState([])
   
   const user = JSON.parse(localStorage.getItem("user"));
@@ -40,7 +41,7 @@ function Post({ setId }) {
   const previewDetails = async (id) => {
     navigate(`/posts/${id}`);
   };
-  if (isLoading) return <CircularProgress  sx={{height:'800px',width:"800px"}} />;
+  if (isLoading) return<Stack sx={{alignItems:'center'}}><CircularProgress  size="5rem"/></Stack> 
 
   return (
     <Grid container spacing={2}>
