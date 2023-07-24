@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import { Button, Container, Grid, InputAdornment, Paper } from "@mui/material";
 import * as api from "../../api/index";
 import { useNavigate } from "react-router-dom";
-import { lightBlue,red,blueGrey } from "material-ui-colors";
+import { pink,red } from "material-ui-colors";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 function Auth() {
@@ -57,7 +57,7 @@ function Auth() {
         <Typography
           variant="h3"
           textAlign="center"
-          sx={{ color: blueGrey[300] }}
+          sx={{ color: pink[500] }}
         >
           {isSignup ? "SignUp" : "SignIn"}
         </Typography>

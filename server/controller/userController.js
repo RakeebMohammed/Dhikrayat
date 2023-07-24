@@ -9,7 +9,7 @@ exports.SignIn = async (req, res) => {
   if (!emailExist) return res.status(201).json({ message: "No user found" });
   const passwordCheck = await bcrypt.compare(password, emailExist.password);
   if (!passwordCheck)
-    return res.status(404).json({ message: "Invalid password" });
+    return res.status(201).json({ message: "Invalid password" });
   const token = jwt.sign(
     { email: emailExist.email, id: emailExist._id },
     process.env.SECRET,

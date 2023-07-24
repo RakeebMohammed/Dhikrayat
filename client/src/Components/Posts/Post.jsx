@@ -17,14 +17,15 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { red ,blueGrey} from "material-ui-colors";
+import { red } from "material-ui-colors";
 import * as api from "../../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useState } from "react";
+
 function Post({ setId }) {
   const { posts ,isLoading} = useSelector((state) => state);
+  console.log(posts)
   const [Likes, setLikes] = useState([])
-  
   const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,10 +42,14 @@ function Post({ setId }) {
   const previewDetails = async (id) => {
     navigate(`/posts/${id}`);
   };
-  if (isLoading) return<Stack sx={{alignItems:'center'}}><CircularProgress  size="5rem"/></Stack> 
+  if(posts.message){
+    console.log(posts);
+return <Typography variant="h5" color="initial">No posts</Typography>
+  }
+  if (isLoading) return<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> 
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} minHeight='95%'>
       {posts.map((post) => (
         <Grid key={post._id} item xs={12} sm={6} md={4} lg={3}>
           <Card

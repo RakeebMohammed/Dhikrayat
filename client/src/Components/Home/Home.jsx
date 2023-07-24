@@ -32,30 +32,30 @@ const Home = () => {
   const [Search, setSearch] = useState("");
   const [Tags, setTags] = useState([]);
   const dispatch = useDispatch();
-
+console.log(searchQuery,tags);
   useEffect(() => {
-   if(!searchQuery || !tags){
-    console.log(tags);
-    getAllPost();
-  console.log('mount');}
-  }, [page]);
+  
+     getAllPost();
+  
+  }, []);
   const getAllPost = async () => {
     let { data } = await api.getPost(page);
+    console.log(data.message);
 
     dispatch(getPosts(data));
   };
   const handleSubmit = async () => {
     let { data } = await api.searchPost(Search, Tags.join(","));
     console.log(data);
-    dispatch(searchPosts(data));
     navigate(`/posts/search?searchQuery=${Search}&Tags=${Tags.join(",")}`);
+    dispatch(searchPosts(data));
   };
 
   return (
     <Grow in>
       <Grid
         container
-        justifyContent="space-between"
+       
         sx={{ pr: 2, pl: 2 ,display:'flex',flexDirection:{xs:'column-reverse',sm:'row-reverse',md:'row'}}}
         alignItems="stretch"
 

@@ -86,8 +86,8 @@ exports.searchPosts = async (req, res) => {
   const posts = await postSchema.find({
     $or: [{ title }, { tags: { $in: tags.split(",") } }],
   });
-  console.log(posts);
-  res.status(200).json(posts);
+ 
+ posts?.length? res.status(200).json(posts):res.status(201).json({message:'No posts'})
 };
 exports.commentPost = async (req, res) => {
   const { comment } = req.body;

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Button, Toolbar, Avatar, AppBar, Box } from "@mui/material";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Typography, Button, Toolbar, Avatar, AppBar, Box} from "@mui/material";
+import { Link, useLocation} from "react-router-dom";
 import { red, teal } from "@mui/material/colors";
+import Logo from '../../Images/dhikrayat.png'
+
 const Navbar = () => {
   const location = useLocation();
 
@@ -22,10 +24,9 @@ const Navbar = () => {
           display: "flex", justifyContent: "space-between", alignItems: "center", borderRadius: "10px", }}
       >
         <Link to="/" style={{textDecoration:'none'}}>
-         
-          <Typography variant="h2" color="primary" >
-           Memories
-          </Typography>
+                  <img src={Logo} alt=""  style={{height:'3.6rem'}} />
+              
+
         </Link>
         {User ? (
           <Box 
@@ -48,7 +49,9 @@ const Navbar = () => {
               size="small"
               onClick={logOut}
             >
-              <Typography variant="h6" color="white">
+              <Typography variant="h6" color="white" sx={{typography:{
+            sm:'body1',xs:'body1',md:'h6'
+          }}}>
                 Logout
               </Typography>
             </Button>
@@ -61,11 +64,13 @@ const Navbar = () => {
             size="small"
           >
             <Typography
-              variant="h6"
+              
               color="white"
               component={Link}
               to={"/auth"}
-              sx={{textDecoration:'none'}}
+              sx={{typography:{
+                sm:'body1',xs:'body1',md:'h6',textDecoration:'none'
+              }}}
             >
               SignIn
             </Typography>
