@@ -42,7 +42,7 @@ const PostDetails = () => {
 
         
       </Grid>    <Grid  item  xs={12}  md={6} textAlign='center'>
-      <Box  component="img"  src={post?.selectedfile} sx={{width:{sm:'300px',xs:'300px',md:'400px',lg:'500px'},objectFit:'fill',borderRadius:'25px'}}/>
+      <Box  component="img"  src={post?.selectedfile} sx={{width:{sm:'300px',xs:'240px',md:'400px',lg:'500px'},objectFit:'fill',borderRadius:'25px'}}/>
         </Grid>  
 </Grid>
 

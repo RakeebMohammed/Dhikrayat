@@ -1,5 +1,8 @@
 import axios from "axios";
-const API = axios.create({ baseURL: "https://memories-lp8k.onrender.com/" });
+const API = axios.create({ baseURL:
+ "http://localhost:3001"
+  //"https://memories-lp8k.onrender.com/"
+   });
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("user")) {
     req.headers.Authorization = `Bearer ${

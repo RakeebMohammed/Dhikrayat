@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import * as api from "../../api/index";
-
 import { useDispatch } from "react-redux/es/exports";
 import {
   Grow,
@@ -15,7 +14,6 @@ import { MuiChipsInput } from "mui-chips-input";
 import CreatePost from "../CreatePost/CreatePost";
 import { getPosts, searchPosts } from "../../redux/redux";
 import Paginate from "../Pagination/Paginate";
-
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Home = () => {

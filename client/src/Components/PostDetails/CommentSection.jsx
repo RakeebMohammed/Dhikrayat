@@ -27,12 +27,12 @@ setComments(data?.comments)
       <Grid item sm={6} sx={{height:'200px',overflow:'auto'}}>
       
        
-        {/* {Comments.map((c, i) => (
+        {post?.comments.map((c, i) => (
           <Typography variant="h6" key={i} color="initial">
             <strong>{c.split(":")[0]}</strong>:{c.split(":")[1]}
          
           </Typography>
-        ))} */}
+        ))}
             <div ref={view}/>
       </Grid>
      
