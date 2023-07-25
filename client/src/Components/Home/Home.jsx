@@ -35,7 +35,7 @@ console.log(searchQuery,tags);
   
      getAllPost();
   
-  }, []);
+  }, [page]);
   const getAllPost = async () => {
     let { data } = await api.getPost(page);
     console.log(data.message);
