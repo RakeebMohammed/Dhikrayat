@@ -44,13 +44,13 @@ const Navbar = () => {
               {User.name}
             </Typography>
             <Button 
-              style={{ backgroundColor: red[500] }}
+              sx={{ backgroundColor: red[500] ,px:{xs:.5,md:1}}}
               variant="contained"
               size="small"
               onClick={logOut}
             >
-              <Typography variant="h6" color="white" sx={{typography:{
-            sm:'body1',xs:'body1',md:'h6'
+              <Typography variant=""  color="white" sx={{typography:{
+            sm:'body1',xs:'button',md:'h6'
           }}}>
                 Logout
               </Typography>
