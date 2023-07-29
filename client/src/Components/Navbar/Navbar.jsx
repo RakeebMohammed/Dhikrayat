@@ -19,7 +19,9 @@ const Navbar = () => {
    setUser(null)
   };
   return (
+    
     <AppBar  position="static" sx={{ backgroundColor: "#f7f8fc", my: 3 }}>
+    <div dat></div>
       <Toolbar sx={{
           display: "flex", justifyContent: "space-between", alignItems: "center", borderRadius: "10px", }}
       >

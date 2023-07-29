@@ -2,7 +2,8 @@
 import { CircularProgress, Divider, Paper, Typography, Grid, Box,Stack} from "@mui/material";
 import moment from "moment";
 import React, { useEffect } from "react";
-
+import AOS from 'aos'
+import 'aos/dist/aos.css';
 import { useDispatch, useSelector } from "react-redux";
 import {
   //useNavigate,
@@ -12,12 +13,14 @@ import * as api from "../../api";
 
 import { previewPost } from "../../redux/redux";
 import CommentSection from "./CommentSection";
+
 const PostDetails = () => {
   const dispatch=useDispatch()
   const {post,isLoading}=useSelector(state=>state)
  
   const {id} = useParams();
   useEffect(() => {
+     AOS.init()
    preview()
   },[id])
   const preview=async()=>{
@@ -40,9 +43,9 @@ const PostDetails = () => {
     <CommentSection post={post}/>
      
 
-        
+    
       </Grid>    <Grid  item  xs={12}  md={6} textAlign='center'>
-      <Box  component="img"  src={post?.selectedfile} sx={{width:{sm:'300px',xs:'240px',md:'400px',lg:'500px'},objectFit:'fill',borderRadius:'25px'}}/>
+      <Box data-aos-duration="1000" data-aos="fade-right"  component="img"  src={post?.selectedfile} sx={{width:{sm:'300px',xs:'240px',md:'400px',lg:'500px'},objectFit:'fill',borderRadius:'25px'}}/>
         </Grid>  
 </Grid>
 
