@@ -12,7 +12,7 @@ import {
 import Post from "../Posts/Post";
 import { MuiChipsInput } from "mui-chips-input";
 import CreatePost from "../CreatePost/CreatePost";
-import { getPosts, searchPosts } from "../../redux/redux";
+import { endLoading, getPosts, searchPosts, startLoading } from "../../redux/redux";
 import Paginate from "../Pagination/Paginate";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -32,9 +32,9 @@ const Home = () => {
   const dispatch = useDispatch();
 console.log(searchQuery,tags);
   useEffect(() => {
-  
+    startLoading()
      getAllPost();
-  
+  endLoading()
   }, [page]);
   const getAllPost = async () => {
     let { data } = await api.getPost(page);

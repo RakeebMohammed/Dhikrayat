@@ -25,6 +25,7 @@ import { useState } from "react";
 function Post({ setId }) {
   const { posts ,isLoading} = useSelector((state) => state);
   console.log(posts)
+  console.log(isLoading);
   const [Likes, setLikes] = useState([])
   const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
@@ -46,10 +47,10 @@ function Post({ setId }) {
     console.log(posts);
 return <Typography variant="h5" color="initial">No posts</Typography>
   }
-  if (isLoading) return<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> 
+  // if (isLoading) return<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> 
 
-  return (
-    <Grid container spacing={2} minHeight='95%'>
+  return  isLoading? (<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> ): (
+   <Grid container spacing={2} minHeight='95%'>
       {posts.map((post) => (
         <Grid key={post._id} item xs={12} sm={6} md={4} lg={3}>
           <Card

@@ -11,26 +11,29 @@ import {
 } from "react-router-dom";
 import * as api from "../../api";
 
-import { previewPost } from "../../redux/redux";
+import { endLoading, previewPost, startLoading } from "../../redux/redux";
 import CommentSection from "./CommentSection";
 
 const PostDetails = () => {
   const dispatch=useDispatch()
   const {post,isLoading}=useSelector(state=>state)
- 
+ console.log(isLoading);
   const {id} = useParams();
   useEffect(() => {
      AOS.init()
+     startLoading()
    preview()
+   endLoading()
   },[id])
   const preview=async()=>{
+    startLoading()
     let { data } = await api.previewPost(id);
    
     dispatch(previewPost(data))
   }
-  if (isLoading) return<Stack sx={{alignItems:'center'}}><CircularProgress  size="5rem"/></Stack> 
 
-  return (
+  return isLoading?(  <Stack sx={{alignItems:'center'}}><CircularProgress  size="5rem"/></Stack> 
+  ): (
     <Paper  elevation={8} style={{margin:'25px 0',padding:'25px 25px'}} >
      <Grid container spacing={3}>
       <Grid item  xs={12} md={6} sx={{paddingLeft:'25px'}} justifyContent='space-between' alignItems='center'> <Typography variant="h2" color=""  >{post?.title}</Typography>

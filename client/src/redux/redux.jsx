@@ -6,6 +6,13 @@ let post = createSlice({
     isLoading: true,
   },
   reducers: {
+    startLoading(state,action){
+      return{...state,isLoading:true}
+    },
+    endLoading(state,action){
+      console.log(...state.isLoading);
+      return{...state,isLoading:false}
+    }  ,
     getPosts(state, action) {
       console.log(action.payload);
       return {
@@ -13,30 +20,32 @@ let post = createSlice({
         posts: action.payload.data,
         currentPage: action.payload.currentPage,
         totalPage: action.payload.totalPage,
-        isLoading: false,
+        // isLoading:false
       };
     },searchPosts(state,action){
       return{
-        ...state,posts:action.payload, isLoading: false,
+        ...state,posts:action.payload
       }
     },
 
     previewPost(state, action) {
     
-      return { ...state, post: action.payload  ,isLoading: false,};
+      return { ...state, post: action.payload  ,
+        // isLoading:false
+      };
     },
     createPost(state, action) {
-      return { ...state, posts: [action.payload, ...state.posts] , isLoading: false,};
+      return { ...state, posts: [action.payload, ...state.posts] ,};
     },
     updatePost(state, action) {
       const posts = state.posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );
-      return { ...state, posts: posts, isLoading: false, };
+      return { ...state, posts: posts, };
     },
     deletePost(state, action) {
       const posts = state.posts.filter((post) => post._id !== action.payload);
-      return { ...state, posts: posts, isLoading: false, };
+      return { ...state, posts: posts };
     },
     //  commentPosts(state, action) {
     //   const post = state.posts.map((post) =>
@@ -46,6 +55,6 @@ let post = createSlice({
     // }
   },
 });
-export const { getPosts,searchPosts, createPost, updatePost, deletePost, previewPost ,commentPosts} =
+export const { startLoading,endLoading,getPosts,searchPosts, createPost, updatePost, deletePost, previewPost ,commentPosts} =
   post.actions;
 export default post.reducer;
