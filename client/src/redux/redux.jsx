@@ -7,10 +7,12 @@ let post = createSlice({
   },
   reducers: {
     startLoading(state,action){
+    
       return{...state,isLoading:true}
     },
     endLoading(state,action){
-      console.log(...state.isLoading);
+
+     
       return{...state,isLoading:false}
     }  ,
     getPosts(state, action) {

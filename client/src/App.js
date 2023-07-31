@@ -16,7 +16,7 @@ function App() {
           <Route path="/posts/search" exact Component={Home} />
           <Route path="/posts/:id" exact Component={PostDetails} />
           <Route 
-            path="/auth" Component={User ? () => <Navigate to={"/posts"} /> : <Auth/>}
+            path="/auth" Component={User ? () => <Navigate to={"/posts"} /> : Auth}
           />
         </Routes>
       </Container>

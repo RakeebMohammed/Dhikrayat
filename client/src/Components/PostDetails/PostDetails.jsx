@@ -21,15 +21,16 @@ const PostDetails = () => {
   const {id} = useParams();
   useEffect(() => {
      AOS.init()
-     startLoading()
+    
    preview()
-   endLoading()
+  
   },[id])
   const preview=async()=>{
-    startLoading()
+    dispatch(startLoading())
     let { data } = await api.previewPost(id);
    
     dispatch(previewPost(data))
+    dispatch(endLoading())
   }
 
   return isLoading?(  <Stack sx={{alignItems:'center'}}><CircularProgress  size="5rem"/></Stack> 

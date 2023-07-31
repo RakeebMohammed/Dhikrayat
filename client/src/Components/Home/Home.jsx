@@ -32,15 +32,19 @@ const Home = () => {
   const dispatch = useDispatch();
 console.log(searchQuery,tags);
   useEffect(() => {
-    startLoading()
+  
      getAllPost();
-  endLoading()
+  
   }, [page]);
   const getAllPost = async () => {
+   dispatch(startLoading())
     let { data } = await api.getPost(page);
-    console.log(data.message);
-
+    console.log('ibde');
     dispatch(getPosts(data));
+    dispatch(endLoading())
+    // console.log(data.message);
+
+    
   };
   const handleSubmit = async () => {
     let { data } = await api.searchPost(Search, Tags.join(","));
