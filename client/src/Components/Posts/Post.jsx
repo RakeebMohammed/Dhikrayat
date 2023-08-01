@@ -47,8 +47,7 @@ function Post({ setId }) {
     console.log(posts);
 return <Typography variant="h5" color="initial">No posts</Typography>
   }
-  // if (isLoading) return<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> 
-
+ 
   return  isLoading? (<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> ): (
    <Grid container spacing={2} minHeight='95%'>
       {posts.map((post) => (

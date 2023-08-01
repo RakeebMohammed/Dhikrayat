@@ -33,8 +33,7 @@ const PostDetails = () => {
     dispatch(endLoading())
   }
 
-  return isLoading?(  <Stack sx={{alignItems:'center'}}><CircularProgress  size="5rem"/></Stack> 
-  ): (
+  return isLoading?(<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> ): (
     <Paper  elevation={8} style={{margin:'25px 0',padding:'25px 25px'}} >
      <Grid container spacing={3}>
       <Grid item  xs={12} md={6} sx={{paddingLeft:'25px'}} justifyContent='space-between' alignItems='center'> <Typography variant="h2" color=""  >{post?.title}</Typography>
