@@ -11,7 +11,7 @@ const CommentSection = ({ post }) => {
   const view = useRef()
 const [Comment, setComment] = useState("");
   const [Comments, setComments] = useState(post?.comments);
-   console.log(Comments);
+ //  console.log(Comments);
 console.log(post?.comments);
   const user = JSON.parse(localStorage.getItem("user"));
   const commentPost = async () => {

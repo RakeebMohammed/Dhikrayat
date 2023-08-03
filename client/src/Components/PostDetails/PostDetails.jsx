@@ -6,7 +6,6 @@ import AOS from 'aos'
 import 'aos/dist/aos.css';
 import { useDispatch, useSelector } from "react-redux";
 import {
-  //useNavigate,
   useParams,
 } from "react-router-dom";
 import * as api from "../../api";
@@ -17,7 +16,7 @@ import CommentSection from "./CommentSection";
 const PostDetails = () => {
   const dispatch=useDispatch()
   const {post,isLoading}=useSelector(state=>state)
- console.log(isLoading);
+ 
   const {id} = useParams();
   useEffect(() => {
      AOS.init()
@@ -34,7 +33,7 @@ const PostDetails = () => {
   }
 
   return isLoading?(<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> ): (
-    <Paper  elevation={8} style={{margin:'25px 0',padding:'25px 25px'}} >
+   <> <Paper  elevation={8} style={{margin:'25px 0',padding:'25px 25px'}} >
      <Grid container spacing={3}>
       <Grid item  xs={12} md={6} sx={{paddingLeft:'25px'}} justifyContent='space-between' alignItems='center'> <Typography variant="h2" color=""  >{post?.title}</Typography>
       <Typography variant="body2" color="seagreen" sx={{py:2}} >{post?.tags?.map(tag=>`#${tag}`)}</Typography>
@@ -52,7 +51,12 @@ const PostDetails = () => {
         </Grid>  
 </Grid>
 
+
     </Paper>
+    <Paper>
+     <Typography variant="h6" color="initial">Relevant posts</Typography>
+     
+      </Paper></>
   );
 };
 

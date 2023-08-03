@@ -30,16 +30,15 @@ const Home = () => {
   const [Search, setSearch] = useState("");
   const [Tags, setTags] = useState([]);
   const dispatch = useDispatch();
-console.log(searchQuery,tags);
+//console.log(searchQuery,tags);
   useEffect(() => {
-  
-     getAllPost();
-  
+ 
+      getAllPost();
   }, [page]);
   const getAllPost = async () => {
    dispatch(startLoading())
     let { data } = await api.getPost(page);
-    console.log('ibde');
+    console.log('vilivhu');
     dispatch(getPosts(data));
     dispatch(endLoading())
     // console.log(data.message);
@@ -47,10 +46,14 @@ console.log(searchQuery,tags);
     
   };
   const handleSubmit = async () => {
+    dispatch(startLoading())
+
     let { data } = await api.searchPost(Search, Tags.join(","));
-    console.log(data);
-    navigate(`/posts/search?searchQuery=${Search}&Tags=${Tags.join(",")}`);
+   // console.log(data);
+   navigate(`/posts/search?searchQuery=${Search}&Tags=${Tags.join(",")}`);
     dispatch(searchPosts(data));
+    dispatch(endLoading())
+   
   };
 
   return (

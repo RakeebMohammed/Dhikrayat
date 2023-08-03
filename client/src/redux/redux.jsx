@@ -16,7 +16,7 @@ let post = createSlice({
       return{...state,isLoading:false}
     }  ,
     getPosts(state, action) {
-      console.log(action.payload);
+    
       return {
         ...state,
         posts: action.payload.data,

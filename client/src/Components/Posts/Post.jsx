@@ -25,7 +25,7 @@ import { useState } from "react";
 function Post({ setId }) {
   const { posts ,isLoading} = useSelector((state) => state);
   console.log(posts)
-  console.log(isLoading);
+ 
   const [Likes, setLikes] = useState([])
   const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ function Post({ setId }) {
   };
   if(posts.message){
     console.log(posts);
-return <Typography variant="h5" color="initial">No posts</Typography>
+return  isLoading? (<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> ): <Typography variant="h5" color="initial">No posts</Typography>
   }
  
   return  isLoading? (<Stack sx={{alignItems:'center',height:'80vh',display:'flex',justifyContent:'center'}}><CircularProgress  size="5rem"/></Stack> ): (
