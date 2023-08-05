@@ -11,8 +11,6 @@ const CommentSection = ({ post }) => {
   const view = useRef()
 const [Comment, setComment] = useState("");
   const [Comments, setComments] = useState(post?.comments);
-   console.log(Comments);
-console.log(post?.comments);
   const user = JSON.parse(localStorage.getItem("user"));
   const commentPost = async () => {
     const final = `${user?.result?.name} : ${Comment}`;
@@ -30,10 +28,11 @@ setComments(data?.comments)
         {Comments?.map((c, i) => (
           <Typography variant="h6" key={i} color="initial">
             <strong>{c.split(":")[0]}</strong>:{c.split(":")[1]}
-         
-          </Typography>
-        ))}
             <div ref={view}/>
+          </Typography>
+          
+        ))}
+          
       </Grid>
      
 
