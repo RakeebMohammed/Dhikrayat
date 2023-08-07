@@ -32,13 +32,15 @@ const Home = () => {
   const dispatch = useDispatch();
 //console.log(searchQuery,tags);
   useEffect(() => {
- 
-      getAllPost();
+  if(!searchQuery && !tags){
+    getAllPost();
+  }
+
   }, [page]);
   const getAllPost = async () => {
    dispatch(startLoading())
     let { data } = await api.getPost(page);
-    console.log('vilivhu');
+   
     dispatch(getPosts(data));
     dispatch(endLoading())
     // console.log(data.message);
