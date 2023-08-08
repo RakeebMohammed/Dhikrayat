@@ -35,6 +35,9 @@ const Home = () => {
   if(!searchQuery && !tags){
     getAllPost();
   }
+  else{
+    console.log('ivde vanny');
+  }
 
   }, [page]);
   const getAllPost = async () => {
