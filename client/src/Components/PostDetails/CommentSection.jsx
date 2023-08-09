@@ -28,10 +28,10 @@ setComments(data?.comments)
         {Comments?.map((c, i) => (
           <Typography variant="h6" key={i} color="initial">
             <strong>{c.split(":")[0]}</strong>:{c.split(":")[1]}
-            <div ref={view}/>
+           
           </Typography>
           
-        ))}
+        ))} <div ref={view}/>
           
       </Grid>
      

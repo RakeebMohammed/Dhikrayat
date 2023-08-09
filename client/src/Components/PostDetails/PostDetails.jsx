@@ -16,7 +16,7 @@ import CommentSection from "./CommentSection";
 const PostDetails = () => {
   const dispatch=useDispatch()
   const {post,isLoading}=useSelector(state=>state)
- 
+
   const {id} = useParams();
   useEffect(() => {
      AOS.init()
@@ -53,10 +53,7 @@ const PostDetails = () => {
 
 
     </Paper>
-    <Paper>
-     <Typography variant="h6" color="initial">Relevant posts</Typography>
-     
-      </Paper></>
+   </>
   );
 };
 

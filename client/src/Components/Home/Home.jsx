@@ -35,12 +35,8 @@ const Home = () => {
   if(!searchQuery && !tags){
     getAllPost();
   }
-  else{
-    console.log('ivde vanny');
-    console.log(searchQuery,tags);
-  }
 
-  }, [page]);
+  }, [page,searchQuery,tags]);
   const getAllPost = async () => {
    dispatch(startLoading())
     let { data } = await api.getPost(page);
