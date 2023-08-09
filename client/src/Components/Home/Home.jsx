@@ -37,6 +37,7 @@ const Home = () => {
   }
   else{
     console.log('ivde vanny');
+    console.log(searchQuery,tags);
   }
 
   }, [page]);
